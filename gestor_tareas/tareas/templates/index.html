@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 80vh;">
+  <div class="card shadow-lg border-0" style="max-width: 600px;">
+    <div class="card-body p-5">
+      <h1 class="fw-bold mb-3 text-primary">Bienvenido a tu Gestor de Tareas</h1>
+      <p class="lead mb-4 text-muted">
+        Organiza tus pendientes, mejora tu productividad y lleva el control de tus proyectos de forma simple y eficiente.
+      </p>
+      <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4">
+        Iniciar sesión
+      </a>
+        <a href="{% url 'register' %}" class="btn btn-outline-secondary btn-lg px-4 ms-3">
+            Registrarse
+        </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

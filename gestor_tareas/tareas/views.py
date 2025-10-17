@@ -1,10 +1,14 @@
 from django import forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Tarea
 from django.forms import Form, CharField, Textarea
 from django.contrib import messages
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import Group
+from .forms import Form_Registro
 
 class TareaForm(Form):
     titulo = CharField(max_length=100, label='Título')
@@ -23,7 +27,10 @@ def lista_tareas(request):
 
 @login_required
 def detalle_tarea(request, tarea_id):
-    tarea = get_object_or_404(Tarea, id=tarea_id, usuario=request.user)
+    tarea = get_object_or_404(
+        [tarea for tarea in tareas_en_memoria if tarea['usuario'] == request.user.username],
+        id=tarea_id
+    )
     return render(request, 'detalle_tarea.html', {'tarea': tarea})
 
 @login_required
@@ -31,11 +38,13 @@ def agregar_tarea(request):
     if request.method == 'POST':
         form = TareaForm(request.POST)
         if form.is_valid():
-            tarea = Tarea(
-                titulo=form.cleaned_data['titulo'],
-                descripcion=form.cleaned_data['descripcion'],
-                usuario=request.user
-            )
+            tarea = {
+                'id': id_counter,
+                'titulo': form.cleaned_data['titulo'],
+                'descripcion': form.cleaned_data['descripcion'],
+                'usuario': request.user.username
+            }
+            id_counter += 1
             tareas_en_memoria.append(tarea)
             messages.success(request, 'Tarea agregada exitosamente.')
             return redirect('lista_tareas')
@@ -45,9 +54,43 @@ def agregar_tarea(request):
 
 @login_required
 def eliminar_tarea(request, tarea_id):
-    tarea = get_object_or_404(Tarea, id=tarea_id, usuario=request.user)
+    tarea = get_object_or_404(
+        [tarea for tarea in tareas_en_memoria if tarea['usuario'] == request.user.username],
+        id=tarea_id
+    )
     if request.method == 'POST':
-        tarea.delete()
+        tareas_en_memoria.remove(tarea)
         messages.success(request, 'Tarea eliminada exitosamente.')
         return redirect('lista_tareas')
     return render(request, 'eliminar_tarea.html', {'tarea': tarea})
+
+def login_view(request):
+    # Implementa la lógica de inicio de sesión aquí
+    if request.method == 'POST':
+        # Autenticar y redirigir
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        # Autenticación de usuario
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.error(request, 'Credenciales inválidas.')
+    return render(request, 'login.html')
+
+def logout_view(request):
+    # Implementa la lógica de cierre de sesión aquí
+    logout(request)
+    return redirect('index')
+
+def register_view(request):
+    if request.method == 'POST':
+        form = Form_Registro(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
+            return redirect('login')
+    else:
+        form = Form_Registro()
+    return render(request, 'register.html', {'form': form})
