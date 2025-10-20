@@ -80,9 +80,9 @@ def login_view(request):
     return render(request, 'login.html')
 
 def logout_view(request):
-    # Implementa la lógica de cierre de sesión aquí
     logout(request)
-    return redirect('index')
+    messages.success(request, 'Sesion cerrada exitosamente.')
+    return redirect('login')
 
 def register_view(request):
     if request.method == 'POST':

@@ -21,8 +21,8 @@
               <li class="nav-item me-2 text-white-50">
                 Bienvenido, <strong>{{ user.username }}</strong>
               </li>
-              <li class="nav-item">
-                <a class="btn btn-light btn-sm" href="{% url 'logout' %}">Cerrar sesión</a>
+              <li class="nav-item me-2">
+                <a class="btn btn-light btn-sm rounded" href="{% url 'logout' %}">Cerrar sesión</a>
               </li>
             {% endif %}
           </ul>
