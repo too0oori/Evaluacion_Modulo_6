@@ -20,4 +20,3 @@ class Form_Registro(UserCreationForm):
         self.fields['email'].label = 'Correo electrónico'
         self.fields['password1'].label = 'Contraseña'
         self.fields['password2'].label = 'Confirmar contraseña'
-

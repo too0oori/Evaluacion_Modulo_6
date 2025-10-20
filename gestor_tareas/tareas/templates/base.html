@@ -10,18 +10,18 @@
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="{% url 'index' %}">Gestión de Tareas</a>
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="{% url 'lista_tareas' %}">Gestión de Tareas</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav align-items-center">
             {% if user.is_authenticated %}
-              <li class="nav-item me-2 text-white-50">
-                Bienvenido, <strong>{{ user.username }}</strong>
+              <li class="nav-item me-3 text-white">
+                Bienvenidx, <strong>{{ user.username }}</strong>
               </li>
-              <li class="nav-item me-2">
+              <li class="nav-item ms-auto">
                 <a class="btn btn-light btn-sm rounded" href="{% url 'logout' %}">Cerrar sesión</a>
               </li>
             {% endif %}
@@ -30,6 +30,18 @@
       </div>
     </nav>
 
+    {% if messages %}
+      {% for message in messages %}
+          <div class="container mt-3">
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+          </div>
+      {% endfor %}<!-- Limpiar los mensajes después de mostrarlos -->
+    {% endif %}
+
+
     <!-- CONTENIDO -->
     <div class="container my-5">
       {% block content %}
@@ -37,12 +49,23 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-light text-center py-3 mt-5 border-top">
+    <footer class="fixed-bottom bg-light text-center py-3 mt-5 border-top">
       <small class="text-muted">
         © 2025 Gestor de Tareas, desarrollado por Sofía Lagos para el Bootcamp Desarrollo Full Stack Python.
       </small>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script para cerrar alertas automáticamente -->
+    <script>
+        // Cerrar automáticamente las alertas después de 3 segundos
+        setTimeout(function() {
+            let alerts = document.querySelectorAll('.alert:not(.alert-no-auto-close)');
+            alerts.forEach(function(alert) {
+                let bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 3000);
+    </script>
+</body>
 </html>

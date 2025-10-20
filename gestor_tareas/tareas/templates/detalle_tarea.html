@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Detalles de la Tarea</h3>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <h5 class="text-muted">Título</h5>
+                <p class="fs-5">{{ tarea.titulo }}</p>
+            </div>
+            
+            <div class="mb-3">
+                <h5 class="text-muted">Descripción</h5>
+                <p>{{ tarea.descripcion }}</p>
+            </div>
+            
+            <div class="mb-3">
+                <h5 class="text-muted">Fecha de Vencimiento</h5>
+                <p>
+                    {% if tarea.fecha_vencimiento %}
+                        {{ tarea.fecha_vencimiento|date:"d/m/Y" }}
+                    {% else %}
+                        <span class="text-muted">No especificada</span>
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="mb-3">
+                <h5 class="text-muted">Estado</h5>
+                <p>
+                    {% if tarea.estado == 'completada' %}
+                        <span class="badge bg-success">Completada</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark">Pendiente</span>
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <a href="{% url 'lista_tareas' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Volver a Mis Tareas
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
