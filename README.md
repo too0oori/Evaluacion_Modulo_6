@@ -7,12 +7,6 @@
 Este es un proyecto simple de gestión de tareas desarrollado con Django y Bootstrap 5, creado durante el Bootcamp de Desarrollo Full Stack Python. Permite a los usuarios registrarse, iniciar sesión, y gestionar una lista de tareas pendientes.
 El objetivo principal fue aplicar los conocimientos de autenticación de Django y el manejo de flujos CRUD (Crear, Leer, Actualizar, Eliminar) dentro de una aplicación web.
 
-📝 Gestor de Tareas (To-Do List Manager)
-
-¡Hola! Este es mi proyecto final para el Bootcamp de Desarrollo Full Stack Python: una aplicación web simple para gestionar tareas. Fue construida con Django y utiliza Bootstrap 5 para una interfaz moderna y responsive.
-
-El objetivo principal fue aplicar los conocimientos de autenticación de Django y el manejo de flujos CRUD (Crear, Leer, Actualizar, Eliminar) dentro de una aplicación web.
-
 ✨ Funcionalidades Principales
 
 Implementé las siguientes características clave:
