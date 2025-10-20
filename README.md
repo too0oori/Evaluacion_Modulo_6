@@ -69,7 +69,7 @@ El proyecto está centrado en la aplicación tareas/:
 1. Clonar el Repositorio
 
 ```bash
-git clone <url-de-tu-repositorio>
+git clone <https://github.com/too0oori/Evaluacion_Modulo_6>
 cd gestor_tareas
 ```
 
@@ -77,17 +77,19 @@ cd gestor_tareas
 
 Aislar las dependencias del proyecto.
 
-# Crear el entorno virtual (venv es un nombre común)
+Crear el entorno virtual (env es un nombre común)
 python -m venv env
 
-# Activar el entorno virtual
-# En Windows (Command Prompt):
-# env\Scripts\activate
-
+Activar el entorno virtual
+En Windows (Command Prompt):
+```bash
+env\Scripts\activate
+```
 3. Instalar Dependencias
 
-# pip install -r requirements.txt
-
+```bash
+pip install -r requirements.txt
+```
 Pero como se utiliza Python se puede instalar directamente en el entorno virtual con
 
 ```bash
