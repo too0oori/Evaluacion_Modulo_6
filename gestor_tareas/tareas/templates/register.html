@@ -17,6 +17,7 @@
                         {% endfor %}
                     {% endif %}
                     
+                    <!-- Formulario de registro -->
                     <form class="form-signin" method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}

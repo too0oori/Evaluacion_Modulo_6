@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import CustomUser
 
+# Formulario de registro de usuario personalizado
+# Extiende UserCreationForm para poder incluir el campo de correo electrónico
 class Form_Registro(UserCreationForm):
     email = forms.EmailField(required=True)
     

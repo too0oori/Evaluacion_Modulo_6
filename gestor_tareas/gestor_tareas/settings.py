@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'haruyluna'
+SECRET_KEY = 'secreto'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -107,6 +107,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# Archivos estáticos (en producción se recopilan en STATIC_ROOT)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directorio donde se recopilarán los archivos estáticos
 
 # Default primary key field type
@@ -114,7 +115,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directorio donde se recop
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'tareas.CustomUser'
+AUTH_USER_MODEL = 'tareas.CustomUser' # Se define el modelo de usuario personalizado
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'

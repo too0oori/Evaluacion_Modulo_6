@@ -24,7 +24,7 @@
                         <tbody>
                             {% for tarea in tareas %}
                                 <tr>
-                                    <td>{{ tarea.titulo }}</td>
+                                    <td>{{ tarea.titulo }}</td>             <!-- Indicador de estado de la tarea -->
                                     <td class="text-center">
                                         {% if tarea.estado == 'completada' %}
                                             <span class="badge bg-success">Completada</span>

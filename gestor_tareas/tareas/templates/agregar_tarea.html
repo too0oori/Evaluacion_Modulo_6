@@ -10,6 +10,7 @@
                 <div class="card-body">
                     <form method="post">
                         {% csrf_token %}
+                        <!-- Formulario para agregar una nueva tarea -->
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Título</label>
                             <input type="text" class="form-control" id="titulo" name="titulo" required>
