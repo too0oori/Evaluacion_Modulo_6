@@ -12,20 +12,20 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="{% url 'lista_tareas' %}">Gestión de Tareas</a>
+        {% if user.is_authenticated %}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav align-items-center">
-            {% if user.is_authenticated %}
               <li class="nav-item me-3 text-white">
                 Bienvenidx, <strong>{{ user.username }}</strong>
               </li>
               <li class="nav-item ms-auto">
                 <a class="btn btn-light btn-sm rounded" href="{% url 'logout' %}">Cerrar sesión</a>
               </li>
-            {% endif %}
           </ul>
+        {% endif %}
         </div>
       </div>
     </nav>
@@ -67,5 +67,14 @@
             });
         }, 3000);
     </script>
+
+    <style>
+      @media (max-width: 576px) {
+        .table td .btn {
+          flex: 1 1 100%;
+          text-align: center;
+        }
+      }
+    </style>
 </body>
 </html>

@@ -24,7 +24,7 @@
                         <tbody>
                             {% for tarea in tareas %}
                                 <tr>
-                                    <td>{{ tarea.titulo }}</td>             <!-- Indicador de estado de la tarea -->
+                                    <td>{{ tarea.titulo }}</td>
                                     <td class="text-center">
                                         {% if tarea.estado == 'completada' %}
                                             <span class="badge bg-success">Completada</span>
@@ -33,17 +33,19 @@
                                         {% endif %}
                                     </td>
                                     <td class="text-end align-middle">
-                                        <a href="{% url 'detalle_tarea' tarea.id %}" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-eye me-1"></i> Ver Detalle
-                                        </a>
-                                        <a href="{% url 'eliminar_tarea' tarea.id %}" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash me-1"></i> Eliminar
-                                        </a>
-                                        {% if tarea.estado == 'pendiente' %}
-                                        <a href="{% url 'marcar_completada' tarea.id %}" class="btn btn-sm btn-success">
-                                            <i class="fas fa-check me-1"></i> Marcar como Completada
-                                        </a>
-                                        {% endif %}
+                                        <div class="d-flex flex-wrap justify-content-end gap-2">
+                                            <a href="{% url 'detalle_tarea' tarea.id %}" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-eye me-1"></i> Ver Detalle
+                                            </a>
+                                            <a href="{% url 'eliminar_tarea' tarea.id %}" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash me-1"></i> Eliminar
+                                            </a>
+                                            {% if tarea.estado == 'pendiente' %}
+                                            <a href="{% url 'marcar_completada' tarea.id %}" class="btn btn-sm btn-success">
+                                                <i class="fas fa-check me-1"></i> Marcar como Completada
+                                            </a>
+                                            {% endif %}
+                                        </div>
                                     </td>
                                 </tr>
                             {% endfor %}
